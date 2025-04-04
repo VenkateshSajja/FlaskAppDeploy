@@ -41,7 +41,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-
+      - name: Deploy to S3
+        run:
+          aws s3 sync . s3://venkybucket --exclude '.git/*'
       - name: Create CodeDeploy Deployment
         id: deploy
         env:
@@ -56,6 +58,4 @@ jobs:
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
 
-            - name: Deploy to S3
-             run:
-             aws s3 sync . s3://venkybucket --exclude '.git/*'
+            
