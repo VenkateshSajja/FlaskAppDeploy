@@ -55,3 +55,7 @@ jobs:
             --deployment-group-name SpringBootDeploymentGroup \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+
+            - name: Deploy to S3
+             run:
+             aws s3 sync . s3://venkybucket --exclude '.git/*'
