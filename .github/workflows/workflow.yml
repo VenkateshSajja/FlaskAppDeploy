@@ -43,7 +43,7 @@ jobs:
           aws-region: us-east-1
       - name: Deploy to S3
         run:
-          aws s3 sync . s3://venkybucket --exclude '.git/*'
+          aws s3 sync . s3://venkybucket 
       - name: Create CodeDeploy Deployment
         id: deploy
         env:
