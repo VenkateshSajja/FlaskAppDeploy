@@ -45,7 +45,7 @@ jobs:
           aws-region: us-east-1
       - name: Deploy to S3
         run:
-          aws s3 sync . s3://venkybucket 
+          aws s3 sync . s3://venkybucket-askdguaiudgjh 
         
       - name: Create CodeDeploy Deployment
         id: deploy
