@@ -44,10 +44,14 @@ jobs:
 
       - name: Create CodeDeploy Deployment
         id: deploy
+        env:
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          # Assuming the Deployment Group is already setup
           aws deploy create-deployment \
-            --application-name application-name \
-            --deployment-group-name AppDeploymentGroupName \
+            --application-name SpringBootApp \
+            --deployment-group-name SpringBootDeploymentGroup \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
